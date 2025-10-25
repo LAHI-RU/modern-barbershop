@@ -1,0 +1,35 @@
+# Laravel & PHP
+/vendor
+/storage/*.key
+/.env
+/.env.local
+/.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+.env.backup
+
+# Node & Vite
+/node_modules
+/public/hot
+/public/build
+/public/storage
+npm-debug.log
+yarn-error.log
+
+# IDEs & Editors
+/.idea
+/.vscode
+/.history
+.DS_Store
+Thumbs.db
+
+# Cache & Logs
+/.cache
+/.sass-cache
+/.parcel-cache
+/storage/logs/*
+/bootstrap/cache/*.php
+
+# OS Files
+ehthumbs.db
+Icon?
