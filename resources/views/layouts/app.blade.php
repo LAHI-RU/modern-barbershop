@@ -18,10 +18,16 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        <a href="#main-content" class="skip-link" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:1000;" onfocus="this.style.left='0';this.style.top='0';this.style.width='auto';this.style.height='auto';this.style.padding='8px';this.style.background='#111827';this.style.color='#fff';">Skip to content</a>
         <x-banner />
 
+        @include('partials.navbar')
+
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+            {{-- keep Jetstream navigation-menu for off-canvas profile links on mobile if present --}}
+            @if(View::exists('navigation-menu'))
+                @livewire('navigation-menu')
+            @endif
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -33,8 +39,12 @@
             @endif
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main id="main-content" tabindex="-1">
+                @isset($slot)
+                    {{ $slot }}
+                @else
+                    @yield('content')
+                @endisset
             </main>
         </div>
 

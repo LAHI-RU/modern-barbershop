@@ -121,6 +121,19 @@ php artisan serve
 
 Visit http://localhost:8000 in your browser.
 
+## Local test credentials
+
+For convenience the database seeder creates a test admin user you can use during local development:
+
+-   Email: `test@example.com`
+-   Password: `password`
+
+Use the Dashboard (after logging in) to access admin pages under `/admin`.
+
+## CI note
+
+The GitHub Actions workflow included with this repo runs the test suite using SQLite to mirror the local development environment and keep CI runs fast.
+
 ## Project structure
 
 High-level layout of important folders:

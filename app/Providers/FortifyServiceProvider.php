@@ -36,13 +36,33 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
+
+        // Custom authentication: prevent inactive staff accounts from authenticating until approved by admin
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = \App\Models\User::where('email', $request->input('email'))->first();
+
+            if (! $user) {
+                return null;
+            }
+
+            if (! \Illuminate\Support\Facades\Hash::check($request->input('password'), $user->password)) {
+                return null;
+            }
+
+            if ($user->role === 'staff' && ! $user->is_active) {
+                // deny login for inactive staff
+                return null;
+            }
+
+            return $user;
         });
     }
 }

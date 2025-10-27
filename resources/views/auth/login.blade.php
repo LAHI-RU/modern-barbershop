@@ -1,7 +1,15 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <div class="flex items-center space-x-2">
+                <svg class="h-10 w-10 text-indigo-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="24" height="24" rx="4" fill="#fff"/>
+                    <path d="M6 3v18" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 3v18" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 3v18" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <div class="text-lg font-bold">Modern Barbershop</div>
+            </div>
         </x-slot>
 
         <x-validation-errors class="mb-4" />

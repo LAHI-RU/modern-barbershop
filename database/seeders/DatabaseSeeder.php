@@ -15,11 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create a test user and seed initial app data (idempotent)
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            ['name' => 'Test User', 'is_admin' => true, 'password' => bcrypt('password')]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Seed services, staff, availabilities and some appointments
+        $this->call([
+            ServicesSeeder::class,
+            StaffSeeder::class,
+            AvailabilitySeeder::class,
+            AppointmentsSeeder::class,
         ]);
     }
 }
