@@ -192,10 +192,3 @@ For major changes, open an issue first so we can discuss design and scope.
 This project is released under the MIT License. See the `LICENSE` file for details.
 
 ---
-
-If you'd like, I can also:
-
--   Add a short `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`.
--   Add a quick local seeder that creates sample services and staff.
-
-Tell me which you'd like next and I'll add it.
